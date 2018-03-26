@@ -265,7 +265,12 @@ class JSONImplFactory implements ObjectFactory {
         return new OEmbedJSONImpl(res, conf);
     }
 
-    /**
+	@Override
+	public boolean createReadMarkResult(HttpResponse res) {
+		return res.statusCode == 204;
+	}
+
+	/**
      * static factory method for twitter-text-java
      *
      * @return hashtag entity

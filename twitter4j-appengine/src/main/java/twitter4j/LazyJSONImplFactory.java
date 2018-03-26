@@ -281,7 +281,12 @@ class LazyJSONImplFactory implements ObjectFactory {
         return new LazyOEmbed(res, factory);
     }
 
-    @Override
+	@Override
+	public boolean createReadMarkResult(HttpResponse res) {
+		return res.statusCode == 204;
+	}
+
+	@Override
     public TwitterAPIConfiguration createTwitterAPIConfiguration(HttpResponse res) throws TwitterException {
         return new LazyTwitterAPIConfiguration(res, factory);
     }

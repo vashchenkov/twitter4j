@@ -284,6 +284,14 @@ class TwitterImpl extends TwitterBaseImpl implements Twitter {
     }
 
     @Override
+    public boolean markMessageRead(long messageId, long userId) throws TwitterException {
+        final HttpParameter messageIdParam = new HttpParameter("last_read_event_id", messageId);
+        final HttpParameter userIdParam = new HttpParameter("recipient_id", userId);
+        return factory.createReadMarkResult(post(conf.getRestBaseURL() + "direct_messages/mark_read.json"
+                , mergeImplicitParams(messageIdParam, userIdParam)));
+    }
+
+    @Override
     public ResponseList<DirectMessage> getSentDirectMessages() throws TwitterException {
         return factory.createDirectMessageList(get(conf.getRestBaseURL() + "direct_messages/sent.json?full_text=true"));
     }

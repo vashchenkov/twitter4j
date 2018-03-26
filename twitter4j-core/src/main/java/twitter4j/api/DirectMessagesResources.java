@@ -51,6 +51,15 @@ public interface DirectMessagesResources {
         throws TwitterException;
 
     /**
+     * Marks messages as read in conversation between authenticated user and other user.
+     * @param messageId identifier of message. All messages in conversation before this message will be marked as read
+     * @param userId user identifier messages in conversation with will be marked as read
+     * @return true if typing indicator successfully sent. false in otherwise
+     * @throws TwitterException when Twitter service or network is unavailable
+     * @see <a href="https://developer.twitter.com/en/docs/direct-messages/typing-indicator-and-read-receipts/api-reference/new-read-receipt">POST direct_messages/mark_read | Twitter Developers</a>
+     */
+    boolean markMessageRead(long messageId, long userId) throws TwitterException;
+    /**
      * Returns a list of the direct messages sent by the authenticating user.
      * <br>This method calls https://api.twitter.com/1.1/direct_messages/sent
      *
